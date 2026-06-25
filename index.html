@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Arsenal — North London Forever</title>
+  <meta name="description" content="Celebrating Arsenal Football Club — the legends, the trophies, the Invincibles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── Design Tokens ─────────────────────────────────────── */
+    :root {
+      --ground:        #06060D;
+      --surface:       #0E0E1A;
+      --surface-raised:#161628;
+      --red:           #EF0107;
+      --red-glow:      rgba(239, 1, 7, 0.12);
+      --gold:          #C49327;
+      --text:          #E8E8F2;
+      --muted:         #60607A;
+      --muted-mid:     #8E8EA8;
+      --border:        rgba(255,255,255,0.06);
+      --border-mid:    rgba(255,255,255,0.12);
+
+      --font-display: 'Bebas Neue', 'Arial Narrow', 'Impact', sans-serif;
+      --font-body:    'Inter', system-ui, -apple-system, sans-serif;
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    img  { display: block; max-width: 100%; }
+
+    body {
+      background: var(--ground);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Navigation ────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 48px;
+      height: 64px;
+      transition: background 0.4s ease, border-color 0.4s ease;
+      border-bottom: 1px solid transparent;
+    }
+    .nav.scrolled {
+      background: rgba(6, 6, 13, 0.9);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-color: var(--border);
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+    .nav-icon { width: 34px; height: 34px; flex-shrink: 0; }
+    .nav-wordmark {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 0.1em;
+      color: var(--text);
+    }
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a:focus-visible { color: var(--text); outline: none; }
+
+    /* ── Hero ──────────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 640px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    /* The signature vertical red rail */
+    .hero::before {
+      content: '';
+      position: absolute;
+      left: 72px;
+      top: 0; bottom: 0;
+      width: 2px;
+      background: var(--red);
+      opacity: 0.5;
+      z-index: 3;
+    }
+
+    .hero-image {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: 52%;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 15%;
+      filter: grayscale(15%) contrast(1.08);
+    }
+    /* Blend the image into the ground on both sides */
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, var(--ground) 0%, transparent 35%);
+      z-index: 1;
+    }
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--ground) 0%, rgba(6,6,13,0.3) 50%, transparent 100%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 4;
+      padding: 0 80px 96px 100px;
+      max-width: 720px;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(88px, 11.5vw, 156px);
+      line-height: 0.88;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      margin-bottom: 32px;
+      text-wrap: balance;
+    }
+    .hero-title em {
+      display: block;
+      font-style: normal;
+      color: var(--red);
+    }
+    .hero-body {
+      font-size: 15px;
+      color: var(--muted-mid);
+      max-width: 360px;
+      line-height: 1.75;
+      margin-bottom: 44px;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 15px 30px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+    .btn-red {
+      background: var(--red);
+      color: #fff;
+    }
+    .btn-red:hover { background: #cc0005; }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-mid);
+    }
+    .btn-outline:hover { border-color: var(--text); }
+
+    /* Founding year stamp bottom-right */
+    .hero-stamp {
+      position: absolute;
+      bottom: 96px;
+      right: 48px;
+      z-index: 4;
+      font-family: var(--font-display);
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.2);
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      transform: rotate(180deg);
+    }
+
+    /* ── Ticker ─────────────────────────────────────────────── */
+    .ticker {
+      height: 44px;
+      background: var(--red);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+    .ticker-track {
+      display: flex;
+      animation: ticker-scroll 32s linear infinite;
+      white-space: nowrap;
+    }
+    .ticker-item {
+      font-family: var(--font-display);
+      font-size: 14px;
+      letter-spacing: 0.18em;
+      color: #fff;
+      padding: 0 44px;
+    }
+    .ticker-dot {
+      color: rgba(255,255,255,0.35);
+      align-self: center;
+    }
+    @keyframes ticker-scroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Shared Section Styles ──────────────────────────────── */
+    .section {
+      padding: 120px 100px;
+    }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(52px, 6.5vw, 88px);
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      color: var(--text);
+      text-wrap: balance;
+    }
+
+    /* ── Legends ────────────────────────────────────────────── */
+    .legends {
+      background: var(--surface);
+    }
+    .legends-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px;
+      gap: 40px;
+    }
+    .legends-counter {
+      font-family: var(--font-display);
+      font-size: 96px;
+      line-height: 1;
+      color: var(--border-mid);
+      letter-spacing: -0.02em;
+      flex-shrink: 0;
+    }
+
+    .player-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3px;
+    }
+    .player-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--ground);
+      cursor: default;
+    }
+    .player-card-img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      object-position: 50% 10%;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  filter 0.5s ease;
+      filter: grayscale(25%) contrast(1.05);
+    }
+    .player-card:hover .player-card-img {
+      transform: scale(1.05);
+      filter: grayscale(0%) contrast(1.1);
+    }
+    .player-overlay {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 26px 30px;
+      background: linear-gradient(to top,
+        rgba(6,6,13,0.98) 0%,
+        rgba(6,6,13,0.75) 55%,
+        transparent 100%);
+    }
+    .player-era {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .player-name {
+      font-family: var(--font-display);
+      font-size: 40px;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 5px;
+    }
+    .player-role {
+      font-size: 12px;
+      color: var(--muted-mid);
+      letter-spacing: 0.06em;
+      margin-bottom: 22px;
+    }
+    .player-stats {
+      display: flex;
+      gap: 28px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+    .player-card:hover .player-stats {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .p-stat-num {
+      font-family: var(--font-display);
+      font-size: 32px;
+      line-height: 1;
+      color: var(--text);
+      font-variant-numeric: tabular-nums;
+    }
+    .p-stat-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    /* ── Invincibles ────────────────────────────────────────── */
+    .invincibles {
+      background: var(--ground);
+      padding: 100px;
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 72px;
+      align-items: center;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+    .inv-number {
+      font-family: var(--font-display);
+      font-size: clamp(130px, 18vw, 240px);
+      line-height: 0.85;
+      color: var(--red);
+      letter-spacing: -0.03em;
+      position: relative;
+      /* Subtle halftone-like text shadow for depth */
+      text-shadow: 0 0 80px rgba(239,1,7,0.25);
+    }
+    .inv-body {}
+    .inv-tag {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 5px 14px;
+      margin-bottom: 22px;
+    }
+    .inv-heading {
+      font-family: var(--font-display);
+      font-size: clamp(42px, 5.5vw, 72px);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .inv-text {
+      font-size: 15px;
+      color: var(--muted-mid);
+      max-width: 500px;
+      line-height: 1.75;
+    }
+    /* Faint "49" ghosted behind as atmosphere */
+    .invincibles::before {
+      content: '49';
+      position: absolute;
+      right: -60px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: 480px;
+      line-height: 1;
+      color: rgba(239,1,7,0.04);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    /* ── Honours ────────────────────────────────────────────── */
+    .honours {
+      background: var(--surface);
+    }
+    .honours-head {
+      margin-bottom: 56px;
+    }
+    .honours-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+    .honour-cell {
+      background: var(--ground);
+      padding: 44px 36px;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .honour-cell:hover { border-top-color: var(--red); }
+    .honour-num {
+      font-family: var(--font-display);
+      font-size: 80px;
+      line-height: 1;
+      color: var(--text);
+      margin-bottom: 10px;
+      font-variant-numeric: tabular-nums;
+    }
+    .honour-name {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+    .honour-note {
+      font-size: 13px;
+      color: var(--muted-mid);
+      line-height: 1.55;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .footer {
+      background: var(--ground);
+      border-top: 1px solid var(--border);
+      padding: 56px 100px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+    }
+    .footer-left {}
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+    .footer-wordmark {
+      font-family: var(--font-display);
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+    .footer-tagline {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+    .footer-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── Scroll Reveal ──────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── Accessibility & Motion ─────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--red);
+      outline-offset: 3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .ticker-track { animation: none; }
+      .reveal {
+        transition: none;
+        opacity: 1;
+        transform: none;
+      }
+      .player-card-img,
+      .player-stats { transition: none; }
+      .player-stats { opacity: 1; transform: none; }
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 1100px) {
+      .section { padding: 96px 64px; }
+      .invincibles { padding: 80px 64px; gap: 56px; }
+      .footer { padding: 48px 64px; }
+      .honours-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 820px) {
+      .nav { padding: 0 28px; }
+      .nav-links { display: none; }
+      .hero::before { left: 40px; }
+      .hero-image { width: 100%; opacity: 0.35; }
+      .hero-content { padding: 0 40px 80px 60px; }
+      .section { padding: 80px 40px; }
+      .player-grid { grid-template-columns: 1fr; gap: 3px; }
+      .player-card-img { height: 420px; }
+      .invincibles { grid-template-columns: 1fr; padding: 80px 40px; gap: 32px; }
+      .invincibles::before { display: none; }
+      .legends-head { flex-direction: column; align-items: flex-start; }
+      .legends-counter { display: none; }
+      .footer { flex-direction: column; align-items: flex-start; padding: 48px 40px; }
+      .footer-links { flex-wrap: wrap; }
+      .honours-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .hero-title { font-size: 72px; }
+      .honours-grid { grid-template-columns: 1fr; }
+      .hero-cta { flex-direction: column; }
+      .btn { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────── -->
+  <nav class="nav" id="main-nav">
+    <a href="#" class="nav-brand" aria-label="The Arsenal — home">
+      <svg class="nav-icon" viewBox="0 0 120 80" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <!-- Cannon barrel -->
+        <rect x="12" y="34" width="66" height="16" rx="8" fill="#EF0107"/>
+        <!-- Barrel extension / muzzle -->
+        <rect x="70" y="38" width="34" height="9" rx="3.5" fill="#EF0107"/>
+        <!-- Breech block -->
+        <rect x="22" y="26" width="22" height="10" rx="2.5" fill="#EF0107"/>
+        <!-- Touch hole detail -->
+        <circle cx="30" cy="26" r="2.5" fill="#C49327"/>
+        <!-- Left wheel -->
+        <circle cx="28" cy="56" r="13" fill="none" stroke="#C49327" stroke-width="3"/>
+        <circle cx="28" cy="56" r="4" fill="#C49327"/>
+        <!-- Right wheel -->
+        <circle cx="65" cy="56" r="13" fill="none" stroke="#C49327" stroke-width="3"/>
+        <circle cx="65" cy="56" r="4" fill="#C49327"/>
+        <!-- Axle -->
+        <line x1="28" y1="56" x2="65" y2="56" stroke="#C49327" stroke-width="2.5"/>
+      </svg>
+      <span class="nav-wordmark">THE ARSENAL</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#legends">Legends</a></li>
+      <li><a href="#invincibles">Invincibles</a></li>
+      <li><a href="#honours">Honours</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── Hero ────────────────────────────────────── -->
+  <header class="hero" aria-labelledby="hero-heading">
+    <div class="hero-image" aria-hidden="true">
+      <img src="brand_assets/saka%20claude%20image.webp" alt="">
+    </div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Est. 1886 · North London</p>
+      <h1 class="hero-title" id="hero-heading">
+        THE
+        <em>ARSENAL</em>
+      </h1>
+      <p class="hero-body">
+        Forged in a south-east London factory. Built into something permanent.
+        From Highbury's marble halls to the Emirates — one club, one history,
+        one identity.
+      </p>
+      <div class="hero-cta">
+        <a href="#legends" class="btn btn-red">Meet the Legends</a>
+        <a href="#honours" class="btn btn-outline">The Honours Board</a>
+      </div>
+    </div>
+
+    <span class="hero-stamp" aria-hidden="true">Arsenal Football Club</span>
+  </header>
+
+  <!-- ── Ticker ───────────────────────────────────── -->
+  <div class="ticker" role="marquee" aria-label="Club achievements">
+    <div class="ticker-track" id="ticker-track"></div>
+  </div>
+
+  <!-- ── Legends ──────────────────────────────────── -->
+  <section class="section legends" id="legends" aria-labelledby="legends-heading">
+    <div class="legends-head reveal">
+      <div>
+        <p class="section-label">Club Legends</p>
+        <h2 class="section-title" id="legends-heading">Icons of the Emirates</h2>
+      </div>
+      <span class="legends-counter" aria-hidden="true">03</span>
+    </div>
+
+    <div class="player-grid">
+
+      <article class="player-card reveal">
+        <img class="player-card-img"
+             src="brand_assets/thierry%20henry%20claude%20image.jpg"
+             alt="Thierry Henry pulling his Arsenal shirt in celebration"
+             loading="lazy">
+        <div class="player-overlay">
+          <p class="player-era">1999 – 2007, 2012</p>
+          <h3 class="player-name">THIERRY<br>HENRY</h3>
+          <p class="player-role">Striker · The King of Highbury</p>
+          <div class="player-stats" aria-label="Career stats at Arsenal">
+            <div>
+              <div class="p-stat-num">228</div>
+              <div class="p-stat-label">Goals</div>
+            </div>
+            <div>
+              <div class="p-stat-num">370</div>
+              <div class="p-stat-label">Apps</div>
+            </div>
+            <div>
+              <div class="p-stat-num">2×</div>
+              <div class="p-stat-label">PL Golden Boot</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="player-card reveal" style="transition-delay: 0.1s">
+        <img class="player-card-img"
+             src="brand_assets/Mesut%20Ozil%20Arsenal%20photo%20-%20claude%20images.jpg"
+             alt="Mesut Özil in his celebration pose"
+             loading="lazy">
+        <div class="player-overlay">
+          <p class="player-era">2013 – 2021</p>
+          <h3 class="player-name">MESUT<br>ÖZIL</h3>
+          <p class="player-role">Attacking Midfielder · The Maestro</p>
+          <div class="player-stats" aria-label="Career stats at Arsenal">
+            <div>
+              <div class="p-stat-num">54</div>
+              <div class="p-stat-label">Goals</div>
+            </div>
+            <div>
+              <div class="p-stat-num">77</div>
+              <div class="p-stat-label">Assists</div>
+            </div>
+            <div>
+              <div class="p-stat-num">254</div>
+              <div class="p-stat-label">Apps</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="player-card reveal" style="transition-delay: 0.2s">
+        <img class="player-card-img"
+             src="brand_assets/saka%20claude%20image.webp"
+             alt="Bukayo Saka celebrating with both arms raised"
+             loading="lazy">
+        <div class="player-overlay">
+          <p class="player-era">2018 – Present</p>
+          <h3 class="player-name">BUKAYO<br>SAKA</h3>
+          <p class="player-role">Right Winger · The Future is Now</p>
+          <div class="player-stats" aria-label="Career stats at Arsenal">
+            <div>
+              <div class="p-stat-num">75+</div>
+              <div class="p-stat-label">Goals</div>
+            </div>
+            <div>
+              <div class="p-stat-num">68+</div>
+              <div class="p-stat-label">Assists</div>
+            </div>
+            <div>
+              <div class="p-stat-num">250+</div>
+              <div class="p-stat-label">Apps</div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ── Invincibles ───────────────────────────────── -->
+  <div class="invincibles" id="invincibles" role="region" aria-labelledby="inv-heading">
+    <div class="inv-number reveal" aria-hidden="true">49</div>
+    <div class="inv-body">
+      <span class="inv-tag reveal">The Invincibles · 2003 / 04</span>
+      <h2 class="inv-heading reveal" id="inv-heading">
+        Unbeaten.<br>Unmatched.
+      </h2>
+      <p class="inv-text reveal">
+        In the 2003–04 Premier League season, Arsenal completed the entire
+        38-game campaign without a single defeat — a record that has never been
+        replicated in the English top flight. The run extended to 49 consecutive
+        unbeaten league games across two seasons. Forever Invincible.
+      </p>
+    </div>
+  </div>
+
+  <!-- ── Honours ───────────────────────────────────── -->
+  <section class="section honours" id="honours" aria-labelledby="honours-heading">
+    <div class="honours-head">
+      <p class="section-label reveal">Trophy Cabinet</p>
+      <h2 class="section-title reveal" id="honours-heading">The Honours Board</h2>
+    </div>
+
+    <div class="honours-grid">
+      <div class="honour-cell reveal">
+        <div class="honour-num">13</div>
+        <div class="honour-name">League Titles</div>
+        <div class="honour-note">First Division and Premier League champions, culminating in the perfect Invincible season</div>
+      </div>
+      <div class="honour-cell reveal" style="transition-delay:0.08s">
+        <div class="honour-num">14</div>
+        <div class="honour-name">FA Cups</div>
+        <div class="honour-note">The most FA Cup victories of any club in the history of the competition</div>
+      </div>
+      <div class="honour-cell reveal" style="transition-delay:0.16s">
+        <div class="honour-num">16</div>
+        <div class="honour-name">Community Shield</div>
+        <div class="honour-note">Consistent presence at Wembley across every major era of the club</div>
+      </div>
+      <div class="honour-cell reveal" style="transition-delay:0.24s">
+        <div class="honour-num">1</div>
+        <div class="honour-name">Cup Winners' Cup</div>
+        <div class="honour-note">1994 European glory in Copenhagen, defeating Parma to lift the trophy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer-left">
+      <div class="footer-brand">
+        <svg width="28" height="19" viewBox="0 0 120 80" fill="none" aria-hidden="true">
+          <rect x="12" y="34" width="66" height="16" rx="8" fill="#EF0107"/>
+          <rect x="70" y="38" width="34" height="9" rx="3.5" fill="#EF0107"/>
+          <rect x="22" y="26" width="22" height="10" rx="2.5" fill="#EF0107"/>
+          <circle cx="30" cy="26" r="2.5" fill="#C49327"/>
+          <circle cx="28" cy="56" r="13" fill="none" stroke="#C49327" stroke-width="3"/>
+          <circle cx="28" cy="56" r="4" fill="#C49327"/>
+          <circle cx="65" cy="56" r="13" fill="none" stroke="#C49327" stroke-width="3"/>
+          <circle cx="65" cy="56" r="4" fill="#C49327"/>
+          <line x1="28" y1="56" x2="65" y2="56" stroke="#C49327" stroke-width="2.5"/>
+        </svg>
+        <span class="footer-wordmark">THE ARSENAL</span>
+      </div>
+      <p class="footer-tagline">North London Forever · Est. 1886</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#legends">Legends</a></li>
+      <li><a href="#invincibles">Invincibles</a></li>
+      <li><a href="#honours">Honours</a></li>
+    </ul>
+  </footer>
+
+  <script>
+    // Nav: become solid on scroll
+    const nav = document.getElementById('main-nav');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Ticker: build content and duplicate for seamless loop
+    const tickerItems = [
+      '13 LEAGUE TITLES',
+      '14 FA CUPS',
+      'THE INVINCIBLES 2003 / 04',
+      '49 UNBEATEN GAMES',
+      'NORTH LONDON FOREVER',
+      '1 CUP WINNERS’ CUP',
+      'EST. 1886',
+      'THE ARSENAL',
+    ];
+    const track = document.getElementById('ticker-track');
+    const makeItems = () => tickerItems.map(t =>
+      `<span class="ticker-item">${t}</span><span class="ticker-dot" aria-hidden="true"> &bull; </span>`
+    ).join('');
+    track.innerHTML = makeItems() + makeItems();
+
+    // Scroll reveal
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
