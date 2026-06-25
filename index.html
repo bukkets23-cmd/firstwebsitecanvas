@@ -772,6 +772,152 @@
       width: 100%; height: 100%; border: 0;
     }
 
+    /* ── Managers ───────────────────────────────────────────── */
+    .managers { background: var(--ground); border-top: 1px solid var(--border); }
+    .managers-head {
+      display: flex; align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 56px; gap: 40px;
+    }
+    .manager-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 3px; }
+    .manager-card {
+      position: relative; overflow: hidden;
+      background: var(--surface);
+      padding: 56px 52px 52px;
+      cursor: pointer;
+      transition: background 0.3s;
+      display: flex; flex-direction: column; justify-content: space-between;
+      min-height: 340px;
+    }
+    .manager-card:hover { background: var(--surface-raised); }
+    .manager-era {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--red); margin-bottom: 10px;
+    }
+    .manager-name {
+      font-family: var(--font-display);
+      font-size: clamp(44px, 5vw, 68px);
+      line-height: 0.9; letter-spacing: 0.02em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .manager-title {
+      font-size: 13px; color: var(--muted-mid);
+      letter-spacing: 0.06em; margin-bottom: 36px;
+    }
+    .manager-record { display: flex; gap: 32px; }
+    .m-stat-num {
+      font-family: var(--font-display); font-size: 44px;
+      line-height: 1; color: var(--text); font-variant-numeric: tabular-nums;
+    }
+    .m-stat-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); margin-top: 4px;
+    }
+    .manager-ghost {
+      position: absolute; right: 20px; bottom: -16px;
+      font-family: var(--font-display);
+      font-size: clamp(100px, 14vw, 190px);
+      line-height: 1; color: rgba(255,255,255,0.04);
+      pointer-events: none; user-select: none; letter-spacing: -0.03em;
+    }
+    /* Manager profile pages — single-column, no photo */
+    .player-page--wide .player-page-inner { grid-template-columns: 1fr; }
+    .player-page--wide .player-page-left {
+      border-right: none; padding: 80px 100px; max-width: 840px;
+    }
+
+    /* ── Greatest Moments Timeline ───────────────────────────── */
+    .moments { background: var(--surface); border-top: 1px solid var(--border); }
+    .moments-head { margin-bottom: 72px; }
+    .timeline { position: relative; max-width: 900px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px;
+      background: linear-gradient(to bottom, transparent, var(--red) 8%, var(--red) 92%, transparent);
+    }
+    .timeline-item { position: relative; padding-left: 52px; padding-bottom: 56px; }
+    .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-dot {
+      position: absolute; left: -5px; top: 7px;
+      width: 12px; height: 12px;
+      background: var(--red); border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(239,1,7,0.15);
+    }
+    .timeline-year {
+      font-family: var(--font-display); font-size: 13px;
+      letter-spacing: 0.2em; color: var(--red); margin-bottom: 6px;
+    }
+    .timeline-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3vw, 40px);
+      line-height: 0.95; letter-spacing: 0.02em;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .timeline-body {
+      font-size: 14px; color: var(--muted-mid);
+      line-height: 1.78; max-width: 560px;
+    }
+
+    /* ── North London Derby ──────────────────────────────────── */
+    .derby {
+      background: var(--ground);
+      border-top: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .derby-inner { position: relative; z-index: 1; }
+    .derby-scoreline {
+      display: flex; align-items: flex-end;
+      gap: 24px; margin-bottom: 56px; flex-wrap: wrap;
+    }
+    .derby-team { text-align: center; }
+    .derby-team-name {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 6px;
+    }
+    .derby-score {
+      font-family: var(--font-display);
+      font-size: clamp(72px, 11vw, 148px);
+      line-height: 1; font-variant-numeric: tabular-nums;
+    }
+    .derby-score--arsenal { color: var(--red); }
+    .derby-divider {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 7vw, 96px);
+      color: var(--border-mid); line-height: 1; padding-bottom: 6px;
+    }
+    .derby-score--spurs { color: var(--muted); }
+    .derby-stats {
+      display: flex; gap: 44px; flex-wrap: wrap;
+      margin-bottom: 52px; padding-top: 36px;
+      border-top: 1px solid var(--border);
+    }
+    .derby-stat-num {
+      font-family: var(--font-display); font-size: 52px;
+      line-height: 1; color: var(--text); font-variant-numeric: tabular-nums;
+    }
+    .derby-stat-label {
+      font-size: 10px; font-weight: 500; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--muted); margin-top: 4px;
+    }
+    .derby-quote {
+      max-width: 540px; border-left: 2px solid var(--red); padding-left: 24px;
+    }
+    .derby-quote-text {
+      font-size: 15px; font-style: italic;
+      color: var(--muted-mid); line-height: 1.75; margin-bottom: 12px;
+    }
+    .derby-quote-attr {
+      font-size: 11px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    }
+    .derby::before {
+      content: 'NLD';
+      position: absolute; right: -60px; top: 50%;
+      transform: translateY(-50%);
+      font-family: var(--font-display); font-size: 500px;
+      line-height: 1; color: rgba(239,1,7,0.03);
+      pointer-events: none; user-select: none; letter-spacing: -0.04em;
+    }
+
     /* ── Invincibles background image ───────────────────────── */
     /* Ensure the existing "49" ghost stays above the new image */
     .invincibles::before { z-index: 1; }
@@ -818,6 +964,16 @@
       .invincibles { padding: 100px 64px; gap: 56px; }
       .footer { padding: 48px 64px; }
       .honours-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 1100px) {
+      .manager-grid { grid-template-columns: repeat(2, 1fr); }
+      .player-page--wide .player-page-left { padding: 64px; }
+    }
+    @media (max-width: 820px) {
+      .manager-grid { grid-template-columns: 1fr; }
+      .derby-stats { gap: 28px; }
+      .derby::before { display: none; }
+      .player-page--wide .player-page-left { padding: 60px 32px; }
     }
     @media (max-width: 820px) {
       .nav { padding: 0 28px; }
@@ -871,8 +1027,10 @@
     </a>
     <ul class="nav-links">
       <li><a href="#legends">Legends</a></li>
-      <li><a href="#invincibles">Invincibles</a></li>
+      <li><a href="#managers">Managers</a></li>
+      <li><a href="#moments">Moments</a></li>
       <li><a href="#honours">Honours</a></li>
+      <li><a href="#derby">Derby</a></li>
     </ul>
   </nav>
 
@@ -1003,6 +1161,51 @@
     </div>
   </section>
 
+  <!-- ── Managers ────────────────────────────────────── -->
+  <section class="section managers" id="managers" aria-labelledby="managers-heading">
+    <div class="managers-head reveal">
+      <div>
+        <p class="section-label">The Gaffer</p>
+        <h2 class="section-title" id="managers-heading">Men Who Shaped Arsenal</h2>
+      </div>
+      <span class="legends-counter" aria-hidden="true">02</span>
+    </div>
+
+    <div class="manager-grid">
+
+      <article class="manager-card player-card--unlockable reveal" id="wenger-card" role="button" tabindex="0" aria-label="Access Arsène Wenger profile">
+        <div>
+          <p class="manager-era">1996 – 2018</p>
+          <h3 class="manager-name">ARSÈNE<br>WENGER</h3>
+          <p class="manager-title">Manager &middot; Le Professeur</p>
+          <div class="manager-record">
+            <div><div class="m-stat-num">22</div><div class="m-stat-label">Years</div></div>
+            <div><div class="m-stat-num">17</div><div class="m-stat-label">Trophies</div></div>
+            <div><div class="m-stat-num">714</div><div class="m-stat-label">Wins</div></div>
+          </div>
+        </div>
+        <span class="player-access-badge" aria-hidden="true">UNLOCK &#x2192;</span>
+        <span class="manager-ghost" aria-hidden="true">22</span>
+      </article>
+
+      <article class="manager-card player-card--unlockable reveal" id="arteta-card" role="button" tabindex="0" aria-label="Access Mikel Arteta profile" style="transition-delay:0.1s">
+        <div>
+          <p class="manager-era">2019 – Present</p>
+          <h3 class="manager-name">MIKEL<br>ARTETA</h3>
+          <p class="manager-title">Manager &middot; The Architect</p>
+          <div class="manager-record">
+            <div><div class="m-stat-num">6+</div><div class="m-stat-label">Years</div></div>
+            <div><div class="m-stat-num">4</div><div class="m-stat-label">Trophies</div></div>
+            <div><div class="m-stat-num">1</div><div class="m-stat-label">PL Title</div></div>
+          </div>
+        </div>
+        <span class="player-access-badge" aria-hidden="true">UNLOCK &#x2192;</span>
+        <span class="manager-ghost" aria-hidden="true">PL</span>
+      </article>
+
+    </div>
+  </section>
+
   <!-- ── Invincibles ───────────────────────────────── -->
   <div class="invincibles" id="invincibles" role="region" aria-labelledby="inv-heading">
     <div class="inv-number reveal" aria-hidden="true">49</div>
@@ -1019,6 +1222,66 @@
       </p>
     </div>
   </div>
+
+  <!-- ── Greatest Moments ─────────────────────────────── -->
+  <section class="section moments" id="moments" aria-labelledby="moments-heading">
+    <div class="moments-head">
+      <p class="section-label reveal">Club History</p>
+      <h2 class="section-title reveal" id="moments-heading">Greatest Moments</h2>
+    </div>
+    <div class="timeline">
+
+      <div class="timeline-item reveal">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">1886</p>
+        <h3 class="timeline-title">Born in Woolwich</h3>
+        <p class="timeline-body">Founded by workers at the Royal Arsenal munitions factory in Woolwich, south-east London. The club that would become the most decorated in FA Cup history began life among labourers who simply wanted a game of football.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.05s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">1971</p>
+        <h3 class="timeline-title">The First Double</h3>
+        <p class="timeline-body">Under Bertie Mee, Arsenal claimed the First Division title and FA Cup in the same season — the club's first League and Cup Double, sealing North London's grip on English football at Wembley.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.1s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">1989</p>
+        <h3 class="timeline-title">Thomas at Anfield</h3>
+        <p class="timeline-body">Needing to win by two goals at Anfield on the final day, Michael Thomas scored in injury time to snatch the First Division title from Liverpool. Brian Moore's call — <em>"It's up for grabs now!"</em> — echoes through football history.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.15s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">1998</p>
+        <h3 class="timeline-title">Wenger's First Double</h3>
+        <p class="timeline-body">In only his second full season, Arsène Wenger delivered a League and Cup Double. A new style of football — fast, technical, continental — had arrived at Highbury and English football would never be the same again.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.2s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">2003 / 04</p>
+        <h3 class="timeline-title">The Invincibles</h3>
+        <p class="timeline-body">Thirty-eight games. Twenty-six wins. Twelve draws. Zero defeats. Arsenal completed the entire Premier League season unbeaten — a record that has never been matched in English top-flight history.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.25s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">2005</p>
+        <h3 class="timeline-title">Vieira's Final Act</h3>
+        <p class="timeline-body">Patrick Vieira's last kick in an Arsenal shirt was the winning penalty against Manchester United in the FA Cup final at Cardiff. Thundered into the net, arm raised — a fitting farewell for the club's greatest captain.</p>
+      </div>
+
+      <div class="timeline-item reveal" style="transition-delay:0.3s">
+        <span class="timeline-dot"></span>
+        <p class="timeline-year">2025</p>
+        <h3 class="timeline-title">Title Restored</h3>
+        <p class="timeline-body">After a 21-year wait, Mikel Arteta's Arsenal lifted the Premier League trophy. Built through patience, belief, and an unshakeable identity — the title returned to the Emirates and a new dynasty announced itself to the world.</p>
+      </div>
+
+    </div>
+  </section>
 
   <!-- ── Honours ───────────────────────────────────── -->
   <section class="section honours" id="honours" aria-labelledby="honours-heading">
@@ -1051,6 +1314,38 @@
     </div>
   </section>
 
+  <!-- ── North London Derby ───────────────────────────── -->
+  <section class="section derby" id="derby" aria-labelledby="derby-heading">
+    <div class="derby-inner">
+      <p class="section-label reveal">North London Derby</p>
+      <h2 class="section-title reveal" id="derby-heading" style="margin-bottom:52px">Our City.<br>Our Club.</h2>
+
+      <div class="derby-scoreline reveal">
+        <div class="derby-team">
+          <p class="derby-team-name">Arsenal</p>
+          <div class="derby-score derby-score--arsenal">104</div>
+        </div>
+        <div class="derby-divider">&ndash;</div>
+        <div class="derby-team">
+          <p class="derby-team-name">Spurs</p>
+          <div class="derby-score derby-score--spurs">79</div>
+        </div>
+      </div>
+
+      <div class="derby-stats reveal">
+        <div><div class="derby-stat-num">238</div><div class="derby-stat-label">Total Meetings</div></div>
+        <div><div class="derby-stat-num">55</div><div class="derby-stat-label">Draws</div></div>
+        <div><div class="derby-stat-num">5–0</div><div class="derby-stat-label">Biggest Win</div></div>
+        <div><div class="derby-stat-num">49</div><div class="derby-stat-label">Unbeaten Run</div></div>
+      </div>
+
+      <blockquote class="derby-quote reveal">
+        <p class="derby-quote-text">"During the 49-game unbeaten run, not a single North London Derby was lost. Some records exist beyond football."</p>
+        <cite class="derby-quote-attr">The Invincibles &middot; 2003 / 04</cite>
+      </blockquote>
+    </div>
+  </section>
+
   <!-- ── Footer ────────────────────────────────────── -->
   <footer class="footer">
     <div class="footer-left">
@@ -1076,6 +1371,59 @@
       <li><a href="#honours">Honours</a></li>
     </ul>
   </footer>
+
+  <!-- ── Wenger Profile Page ──────────────────────── -->
+  <div class="player-page player-page--wide" id="wenger-profile-page" role="dialog" aria-modal="true" aria-label="Arsène Wenger profile">
+    <div class="player-page-inner">
+      <div class="player-page-left">
+        <button class="player-page-back" aria-label="Return to Managers">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          BACK TO MANAGERS
+        </button>
+        <p class="player-page-era">1996 – 2018</p>
+        <h1 class="player-page-name">ARSÈNE<br>WENGER</h1>
+        <p class="player-page-role">Manager &middot; Le Professeur</p>
+        <div class="player-page-stats">
+          <div><div class="pp-stat-num">22</div><div class="pp-stat-label">Years</div></div>
+          <div><div class="pp-stat-num">1235</div><div class="pp-stat-label">Games</div></div>
+          <div><div class="pp-stat-num">714</div><div class="pp-stat-label">Wins</div></div>
+          <div><div class="pp-stat-num">3&times;</div><div class="pp-stat-label">PL Titles</div></div>
+          <div><div class="pp-stat-num">7&times;</div><div class="pp-stat-label">FA Cups</div></div>
+        </div>
+        <p class="player-page-bio">
+          The greatest manager in Arsenal's history by any measure. Arriving from Nagoya Grampus Eight in 1996, Wenger revolutionised English football with a continental approach to diet, fitness, and possession-based attacking play. He gave us the Invincibles, the Highbury farewell, Thierry Henry, Patrick Vieira, and 22 years of an identity that will never fade. There will never be another.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Arteta Profile Page ───────────────────────── -->
+  <div class="player-page player-page--wide" id="arteta-profile-page" role="dialog" aria-modal="true" aria-label="Mikel Arteta profile">
+    <div class="player-page-inner">
+      <div class="player-page-left">
+        <button class="player-page-back" aria-label="Return to Managers">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+            <path d="M9 2L4 7L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          BACK TO MANAGERS
+        </button>
+        <p class="player-page-era">2019 – Present</p>
+        <h1 class="player-page-name">MIKEL<br>ARTETA</h1>
+        <p class="player-page-role">Manager &middot; The Architect</p>
+        <div class="player-page-stats">
+          <div><div class="pp-stat-num">6+</div><div class="pp-stat-label">Years</div></div>
+          <div><div class="pp-stat-num">2&times;</div><div class="pp-stat-label">FA Cups</div></div>
+          <div><div class="pp-stat-num">1&times;</div><div class="pp-stat-label">PL Title</div></div>
+          <div><div class="pp-stat-num">1&times;</div><div class="pp-stat-label">Comm. Shield</div></div>
+        </div>
+        <p class="player-page-bio">
+          Appointed in December 2019 as one of the youngest managers in Premier League history, Arteta immediately transformed the club's culture and identity. After back-to-back near-misses, he delivered the Premier League title in 2024/25 — ending Arsenal's 21-year wait. Built on pressing, belief, and a relentless standards, the Arteta era has only just begun.
+        </p>
+      </div>
+    </div>
+  </div>
 
   <!-- ── Login Modal ──────────────────────────────── -->
   <div class="modal-backdrop" id="login-backdrop" role="dialog" aria-modal="true" aria-labelledby="login-title">
@@ -1252,9 +1600,11 @@
       const loginError    = document.getElementById('login-error');
       const loginTitle    = document.getElementById('login-title');
       const players = {
-        'henry-card': { username:'Thierry.Henry',  password:'KingTiti',    pageId:'henry-player-page', title:'THIERRY<br>HENRY' },
-        'ozil-card':  { username:'Mesut._.Ozil',   password:'TheMaestro',  pageId:'ozil-player-page',  title:'MESUT<br>ÖZIL'   },
-        'saka-card':  { username:'Bukayo_Saka',     password:'Starboy',     pageId:'saka-player-page',  title:'BUKAYO<br>SAKA'   }
+        'henry-card':  { username:'Thierry.Henry',  password:'KingTiti',     pageId:'henry-player-page',  title:'THIERRY<br>HENRY'  },
+        'ozil-card':   { username:'Mesut._.Ozil',  password:'TheMaestro',   pageId:'ozil-player-page',   title:'MESUT<br>ÖZIL'     },
+        'saka-card':   { username:'Bukayo_Saka',    password:'Starboy',      pageId:'saka-player-page',   title:'BUKAYO<br>SAKA'    },
+        'wenger-card': { username:'Arsene.Wenger',  password:'LeProfesseur', pageId:'wenger-profile-page', title:'ARSÈNE<br>WENGER'  },
+        'arteta-card': { username:'Mikel.Arteta',   password:'OurArsenal',   pageId:'arteta-profile-page', title:'MIKEL<br>ARTETA'   }
       };
 
       let activePlayer = null;
@@ -1315,6 +1665,36 @@
         if (openPage) { openPage.classList.remove('open'); document.body.style.overflow = ''; return; }
         if (loginBackdrop.classList.contains('open')) closeLogin();
       });
+    }());
+
+    // ── Count-up animation ─────────────────────────────────────
+    (function () {
+      function animateCount(el) {
+        const raw = el.textContent.trim();
+        const match = raw.match(/^(\d+)(.*)$/);
+        if (!match) return;
+        const target = parseInt(match[1], 10);
+        const suffix = match[2];
+        const duration = 1400;
+        const startTime = performance.now();
+        function tick(now) {
+          const t = Math.min((now - startTime) / duration, 1);
+          const ease = 1 - Math.pow(1 - t, 3);
+          el.textContent = Math.floor(ease * target) + suffix;
+          if (t < 1) requestAnimationFrame(tick);
+          else el.textContent = target + suffix;
+        }
+        requestAnimationFrame(tick);
+      }
+      const countEls = document.querySelectorAll(
+        '.honour-num, .p-stat-num, .m-stat-num, .derby-stat-num, .derby-score--arsenal, .derby-score--spurs'
+      );
+      const countObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animateCount(e.target); countObs.unobserve(e.target); }
+        });
+      }, { threshold: 0.6 });
+      countEls.forEach(el => countObs.observe(el));
     }());
 
     // Scroll reveal
