@@ -1274,8 +1274,9 @@
         const user = document.getElementById('login-username').value.trim();
         const pass = document.getElementById('login-password').value;
         if (user === activePlayer.username && pass === activePlayer.password) {
+          const pageId = activePlayer.pageId;
           closeLogin();
-          const page = document.getElementById(activePlayer.pageId);
+          const page = document.getElementById(pageId);
           if (page) { page.classList.add('open'); document.body.style.overflow = 'hidden'; }
         } else {
           loginError.textContent = 'Invalid credentials — try again.';
