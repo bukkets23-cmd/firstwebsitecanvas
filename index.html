@@ -1094,13 +1094,13 @@
         <p class="player-page-bio">
           Arrived from Juventus in 1999, Henry spent eight seasons at Highbury transforming from a struggling winger into the most prolific scorer in Arsenal history. Twice PFA Player of the Year, four-time Premier League top scorer, and the heartbeat of the Invincible season. His statue stands outside the Emirates — arm raised, shirt pulled, forever a Gunner.
         </p>
-        <button class="btn btn-red watch-highlights-btn" data-video-id="jRtJ9F0xaT0" style="align-self:flex-start; gap:12px;">
+        <a class="btn btn-red" href="https://www.youtube.com/watch?v=jRtJ9F0xaT0" target="_blank" rel="noopener noreferrer" style="align-self:flex-start; gap:12px;">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
             <path d="M6.5 5.5L11 8L6.5 10.5Z" fill="currentColor"/>
           </svg>
           WATCH HIGHLIGHTS
-        </button>
+        </a>
       </div>
       <div class="player-page-right" aria-hidden="true">
         <img src="brand_assets/thierry%20henry%20claude%20image.jpg" alt="">
@@ -1129,13 +1129,13 @@
         <p class="player-page-bio">
           Signed from Real Madrid for a then-record £42.5m in 2013, Özil became the beating heart of Arsenal's attack. Blessed with an unmatched ability to read the game and deliver pinpoint passes through the tightest of spaces, he broke the Premier League assists record in his debut season. When on form, no player in world football could see the game quite like The Maestro.
         </p>
-        <button class="btn btn-red watch-highlights-btn" data-video-id="lXYC0BkquHg" style="align-self:flex-start; gap:12px;">
+        <a class="btn btn-red" href="https://www.youtube.com/watch?v=lXYC0BkquHg" target="_blank" rel="noopener noreferrer" style="align-self:flex-start; gap:12px;">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
             <path d="M6.5 5.5L11 8L6.5 10.5Z" fill="currentColor"/>
           </svg>
           WATCH HIGHLIGHTS
-        </button>
+        </a>
       </div>
       <div class="player-page-right" aria-hidden="true">
         <img src="brand_assets/Mesut%20Ozil%20Arsenal%20photo%20-%20claude%20images.jpg" alt="">
@@ -1165,31 +1165,16 @@
         <p class="player-page-bio">
           Homegrown, selfless, and devastating — Bukayo Saka has become Arsenal's talisman for a new generation. From his debut as a teenager to lifting the Premier League trophy, he has been the embodiment of the club's resurgence. Brave on the ball, relentless in pressing, and clinical in front of goal, he is the heartbeat of a side built to last.
         </p>
-        <button class="btn btn-red watch-highlights-btn" data-video-id="PL6I4554h7Q" style="align-self:flex-start; gap:12px;">
+        <a class="btn btn-red" href="https://www.youtube.com/watch?v=PL6I4554h7Q" target="_blank" rel="noopener noreferrer" style="align-self:flex-start; gap:12px;">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/>
             <path d="M6.5 5.5L11 8L6.5 10.5Z" fill="currentColor"/>
           </svg>
           WATCH HIGHLIGHTS
-        </button>
+        </a>
       </div>
       <div class="player-page-right" aria-hidden="true">
         <img src="brand_assets/saka%20claude%20image.webp" alt="">
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Video Modal ───────────────────────────────── -->
-  <div class="video-backdrop" id="video-backdrop" role="dialog" aria-modal="true" aria-label="Thierry Henry highlights video">
-    <div class="video-container">
-      <button class="video-close" id="video-close" aria-label="Close video">
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-          <path d="M1 1L11 11M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        CLOSE
-      </button>
-      <div class="video-wrapper">
-        <iframe id="highlight-video" src="" title="Arsenal Player Highlights" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       </div>
     </div>
   </div>
@@ -1225,10 +1210,6 @@
       const loginForm     = document.getElementById('login-form');
       const loginError    = document.getElementById('login-error');
       const loginTitle    = document.getElementById('login-title');
-      const videoBackdrop = document.getElementById('video-backdrop');
-      const videoClose    = document.getElementById('video-close');
-      const videoIframe   = document.getElementById('highlight-video');
-
       const players = {
         'henry-card': { username:'Thierry.Henry',  password:'KingTiti',    pageId:'henry-player-page', title:'THIERRY<br>HENRY' },
         'ozil-card':  { username:'Mesut._.Ozil',   password:'TheMaestro',  pageId:'ozil-player-page',  title:'MESUT<br>ÖZIL'   },
@@ -1251,11 +1232,6 @@
         loginError.textContent = '';
         activePlayer = null;
       }
-      function closeVideo() {
-        videoBackdrop.classList.remove('open');
-        videoIframe.src = '';
-      }
-
       Object.keys(players).forEach(cardId => {
         const card = document.getElementById(cardId);
         if (!card) return;
@@ -1292,19 +1268,8 @@
         });
       });
 
-      document.querySelectorAll('.watch-highlights-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          videoBackdrop.classList.add('open');
-          videoIframe.src = 'https://www.youtube.com/embed/' + btn.dataset.videoId + '?autoplay=1&rel=0';
-        });
-      });
-
-      videoClose.addEventListener('click', closeVideo);
-      videoBackdrop.addEventListener('click', e => { if (e.target === videoBackdrop) closeVideo(); });
-
       document.addEventListener('keydown', e => {
         if (e.key !== 'Escape') return;
-        if (videoBackdrop.classList.contains('open')) { closeVideo(); return; }
         const openPage = document.querySelector('.player-page.open');
         if (openPage) { openPage.classList.remove('open'); document.body.style.overflow = ''; return; }
         if (loginBackdrop.classList.contains('open')) closeLogin();
