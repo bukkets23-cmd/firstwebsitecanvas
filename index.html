@@ -771,6 +771,46 @@
       width: 100%; height: 100%; border: 0;
     }
 
+    /* ── Invincibles background image ───────────────────────── */
+    /* Ensure the existing "49" ghost stays above the new image */
+    .invincibles::before { z-index: 1; }
+    /* Direct children (the 49 number + text block) sit above both */
+    .invincibles > * { position: relative; z-index: 2; }
+    .invincibles::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('brand_assets/backgrounds/arsenal%20invincibles%20claude%20image.jpg') center/cover no-repeat;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .invincibles:hover::after { opacity: 0.28; }
+
+    /* ── Honours trophy background images ───────────────────── */
+    .honour-cell {
+      position: relative;
+      overflow: hidden;
+    }
+    .honour-cell > * { position: relative; z-index: 1; }
+    .honour-cell::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.45s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .honour-cell:hover::after { opacity: 0.22; }
+    .honour-cell--league::after { background-image: url('brand_assets/backgrounds/prem%20trophy%20claude%20image.webp'); }
+    .honour-cell--fa::after     { background-image: url('brand_assets/backgrounds/FA-Cup-trophy%20claude%20image.jpg'); }
+    .honour-cell--shield::after { background-image: url('brand_assets/backgrounds/community%20shield%20claude%20image.webp'); }
+    .honour-cell--cwc::after    { background-image: url('brand_assets/backgrounds/uefa%20cup%20winners%20cup%20claude%20image.jpg'); }
+
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 1100px) {
       .section { padding: 96px 64px; }
@@ -987,22 +1027,22 @@
     </div>
 
     <div class="honours-grid">
-      <div class="honour-cell reveal">
+      <div class="honour-cell honour-cell--league reveal">
         <div class="honour-num">13</div>
         <div class="honour-name">League Titles</div>
         <div class="honour-note">First Division and Premier League champions, culminating in the perfect Invincible season</div>
       </div>
-      <div class="honour-cell reveal" style="transition-delay:0.08s">
+      <div class="honour-cell honour-cell--fa reveal" style="transition-delay:0.08s">
         <div class="honour-num">14</div>
         <div class="honour-name">FA Cups</div>
         <div class="honour-note">The most FA Cup victories of any club in the history of the competition</div>
       </div>
-      <div class="honour-cell reveal" style="transition-delay:0.16s">
+      <div class="honour-cell honour-cell--shield reveal" style="transition-delay:0.16s">
         <div class="honour-num">16</div>
         <div class="honour-name">Community Shield</div>
         <div class="honour-note">Consistent presence at Wembley across every major era of the club</div>
       </div>
-      <div class="honour-cell reveal" style="transition-delay:0.24s">
+      <div class="honour-cell honour-cell--cwc reveal" style="transition-delay:0.24s">
         <div class="honour-num">1</div>
         <div class="honour-name">Cup Winners' Cup</div>
         <div class="honour-note">1994 European glory in Copenhagen, defeating Parma to lift the trophy</div>
