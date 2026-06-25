@@ -789,7 +789,17 @@
       display: flex; flex-direction: column; justify-content: space-between;
       min-height: 340px;
     }
+    .manager-card > * { position: relative; z-index: 1; }
+    .manager-card::after {
+      content: ''; position: absolute; inset: 0;
+      background-size: cover; background-position: center top;
+      opacity: 0; transition: opacity 0.55s ease;
+      pointer-events: none; z-index: 0;
+    }
     .manager-card:hover { background: var(--surface-raised); }
+    .manager-card:hover::after { opacity: 0.22; }
+    #wenger-card::after  { background-image: url('brand_assets/backgrounds/Arsene-Wenger-Long-Black-Coat%20claude%20image.jpg'); }
+    #arteta-card::after  { background-image: url('brand_assets/backgrounds/Arsenal-Manager-Mikel-Arteta-claude%20image.jpg'); }
     .manager-era {
       font-size: 10px; font-weight: 600; letter-spacing: 0.22em;
       text-transform: uppercase; color: var(--red); margin-bottom: 10px;
@@ -834,13 +844,23 @@
       content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 2px;
       background: linear-gradient(to bottom, transparent, var(--red) 8%, var(--red) 92%, transparent);
     }
-    .timeline-item { position: relative; padding-left: 52px; padding-bottom: 56px; }
+    .timeline-item {
+      position: relative; padding-left: 52px; padding-bottom: 56px;
+      cursor: default;
+      transition: padding-bottom 0.4s ease;
+    }
+    .timeline-item:hover { padding-bottom: 72px; }
     .timeline-item:last-child { padding-bottom: 0; }
+    .timeline-item:last-child:hover { padding-bottom: 20px; }
     .timeline-dot {
       position: absolute; left: -5px; top: 7px;
       width: 12px; height: 12px;
       background: var(--red); border-radius: 50%;
       box-shadow: 0 0 0 4px rgba(239,1,7,0.15);
+      transition: box-shadow 0.35s ease;
+    }
+    .timeline-item:hover .timeline-dot {
+      box-shadow: 0 0 0 8px rgba(239,1,7,0.25);
     }
     .timeline-year {
       font-family: var(--font-display); font-size: 13px;
@@ -851,19 +871,36 @@
       font-size: clamp(26px, 3vw, 40px);
       line-height: 0.95; letter-spacing: 0.02em;
       color: var(--text); margin-bottom: 10px;
+      transition: font-size 0.4s ease, color 0.3s ease;
+    }
+    .timeline-item:hover .timeline-title {
+      font-size: clamp(40px, 5vw, 64px);
+      color: #fff;
     }
     .timeline-body {
       font-size: 14px; color: var(--muted-mid);
       line-height: 1.78; max-width: 560px;
+      transition: font-size 0.4s ease, color 0.3s ease, max-width 0.4s ease;
+    }
+    .timeline-item:hover .timeline-body {
+      font-size: 17px;
+      color: var(--text);
+      max-width: 680px;
     }
     .timeline-img {
-      margin-top: 16px;
-      width: 100%; max-width: 420px;
-      height: 200px;
+      display: block;
+      width: 100%; max-width: 520px;
+      max-height: 0;
       object-fit: cover; object-position: center top;
       border-radius: 6px;
-      opacity: 0.82;
-      display: block;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.55s ease, opacity 0.45s ease, margin-top 0.45s ease;
+    }
+    .timeline-item:hover .timeline-img {
+      max-height: 320px;
+      opacity: 0.9;
+      margin-top: 20px;
     }
 
     /* ── North London Derby ──────────────────────────────────── */
