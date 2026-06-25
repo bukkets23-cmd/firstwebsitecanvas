@@ -799,9 +799,8 @@
       content: '';
       position: absolute;
       inset: 0;
-      background-size: contain;
+      background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
       opacity: 0;
       transition: opacity 0.45s ease;
       pointer-events: none;
@@ -811,7 +810,7 @@
     .honour-cell--league::after { background-image: url('brand_assets/backgrounds/prem%20trophy%20claude%20image.webp'); }
     .honour-cell--fa::after     { background-image: url('brand_assets/backgrounds/FA-Cup-trophy%20claude%20image.jpg'); }
     .honour-cell--shield::after { background-image: url('brand_assets/backgrounds/community%20shield%20claude%20image.webp'); }
-    .honour-cell--cwc::after    { background-image: url('brand_assets/backgrounds/uefa%20cup%20winners%20cup%20claude%20image.jpg'); }
+    .honour-cell--cwc::after    { background-image: url('brand_assets/backgrounds/uefa%20cup%20winners%20cup%20claude%20image.jpg'); background-size: 160%; background-position: center; }
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 1100px) {
