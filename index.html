@@ -379,7 +379,8 @@
     /* ── Invincibles ────────────────────────────────────────── */
     .invincibles {
       background: var(--ground);
-      padding: 100px;
+      padding: 140px 100px;
+      min-height: 560px;
       position: relative;
       overflow: hidden;
       display: grid;
@@ -809,12 +810,12 @@
     .honour-cell--league::after { background-image: url('brand_assets/backgrounds/prem%20trophy%20claude%20image.webp'); }
     .honour-cell--fa::after     { background-image: url('brand_assets/backgrounds/FA-Cup-trophy%20claude%20image.jpg'); }
     .honour-cell--shield::after { background-image: url('brand_assets/backgrounds/community%20shield%20claude%20image.webp'); }
-    .honour-cell--cwc::after    { background-image: url('brand_assets/backgrounds/uefa%20cup%20winners%20cup%20claude%20image.jpg'); }
+    .honour-cell--cwc::after    { background-image: url('brand_assets/backgrounds/uefa%20cup%20winners%20cup%20claude%20image.jpg'); background-position: center bottom; }
 
     /* ── Responsive ─────────────────────────────────────────── */
     @media (max-width: 1100px) {
       .section { padding: 96px 64px; }
-      .invincibles { padding: 80px 64px; gap: 56px; }
+      .invincibles { padding: 100px 64px; gap: 56px; }
       .footer { padding: 48px 64px; }
       .honours-grid { grid-template-columns: repeat(2, 1fr); }
     }
